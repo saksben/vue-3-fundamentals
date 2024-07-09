@@ -18,5 +18,7 @@ module.exports = {
     'operator-linebreak': 0,
     'comma-dangle': ['error', 'always-multiline'],
     semi: ['error', 'always'],
+    'import/prefer-default-export': 'off',
+    'no-return-assigns': 'off',
   },
 };

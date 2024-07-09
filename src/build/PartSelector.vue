@@ -2,7 +2,7 @@
 <template>
     <div class="part" :class="position">
         <!-- <div>User: {{ userName }}</div> -->
-        <img :src="selectedPart.imageUrl" alt="part" />
+        <router-link :to="{ name: 'Parts', params: { partType: selectedPart.type, id: selectedPart.id } }"><img :src="selectedPart.imageUrl" alt="part" /></router-link>
         <button @click="selectPreviousPart()" class="prev-selector"></button>
         <button @click="selectNextPart()" class="next-selector"></button>
         <span class="sale" v-show="selectedPart.onSale">Sale!</span>

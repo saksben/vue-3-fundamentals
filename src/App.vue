@@ -19,6 +19,11 @@
             Search
           </router-link>
         </li>
+        <li class="nav-item cart">
+          <router-link class="nav-link" to="/cart">
+            Cart
+          </router-link>
+        </li>
       </ul>
     </nav>
   </header>
@@ -74,6 +79,12 @@ ul {
   padding: 5px 10px;
   font-size: 22px;
   border-right: 1px solid #bbb;
+}
+
+.nav-item.cart {
+  position: relative;
+  margin-left: auto;
+  border-right: none;
 }
 
 .nav-link {

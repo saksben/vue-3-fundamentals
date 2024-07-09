@@ -1,15 +1,22 @@
 import { computed, onMounted } from 'vue';
-import parts from '../data/parts';
+import { usePartsStore } from '@/stores/partsStore';
 
 export default function useSearch(searchTerm) {
-  const allParts = [...parts.heads, ...parts.arms, ...parts.torsos, ...parts.bases];
+  const partsStore = usePartsStore();
+
+  partsStore.getParts();
+
+  const allParts = computed(() => (partsStore.parts
+    ? [...partsStore.parts.heads,
+      ...partsStore.parts.arms, ...partsStore.parts.torsos, ...partsStore.parts.bases]
+    : []));
 
   const results = computed(() => {
     let searchResults;
-    if (!searchTerm.value) searchResults = allParts;
+    if (!searchTerm.value) searchResults = allParts.value;
     else {
       const lowerTerm = searchTerm.value.toLowerCase();
-      searchResults = allParts.filter(
+      searchResults = allParts.value.filter(
         (part) => part.title.toLowerCase().includes(lowerTerm),
       );
     }
