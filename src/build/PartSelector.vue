@@ -1,11 +1,13 @@
 <!-- eslint-disable max-len -->
+ <!-- eslint-disable click-events-have-key-events -->
 <template>
     <div class="part" :class="position">
         <!-- <div>User: {{ userName }}</div> -->
         <router-link :to="{ name: 'Parts', params: { partType: selectedPart.type, id: selectedPart.id } }"><img :src="selectedPart.imageUrl" alt="part" /></router-link>
         <button @click="selectPreviousPart()" class="prev-selector"></button>
         <button @click="selectNextPart()" class="next-selector"></button>
-        <span class="sale" v-show="selectedPart.onSale">Sale!</span>
+        <span v-pin="{ bottom: pinPadding, right: pinPadding }" @click="pinPadding='30px'" class="sale" v-show="selectedPart.onSale">
+          Sale!</span>
     </div>
 </template>
 
@@ -28,6 +30,8 @@ export default {
 import {
   computed, ref, onUpdated,
 } from 'vue';
+
+const pinPadding = ref('10px');
 
 // const userName = inject('userName');
 
@@ -81,9 +85,6 @@ const selectPreviousPart = () => {
   }
 
   .sale {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
     color: white;
     background-color: red;
     padding: 3px;
